@@ -1,5 +1,6 @@
+import * as React from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { ReactComponent as AccountIcon } from '../Images/AccountIcon.svg'
+import AccountIcon from '../Images/AccountIcon.svg'
 import LogoutButton from './LogoutButton'
 
 interface Props {

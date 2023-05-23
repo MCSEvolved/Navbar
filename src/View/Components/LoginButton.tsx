@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 interface Props {
   isAuthenticated: Boolean
   userName: string | undefined | null

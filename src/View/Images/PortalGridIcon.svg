@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Created with Vectornator (http://vectornator.io/) -->
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 267.426 268.163" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 267.426 268.163" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsVectornator="http://vectornator.io" xmlnsXlink="http://www.w3.org/1999/xlink">
 <defs/>
 <clipPath id="ArtboardFrame">
 <rect height="268.163" width="267.426" x="0" y="0"/>
 </clipPath>
-<g clip-path="url(#ArtboardFrame)" id="Layer-2" vectornator:layername="Layer 2">
+<g clip-path="url(#ArtboardFrame)" id="Layer-2" vectornatorLayername="Layer 2">
 <path d="M10.6036-1.06581e-14L51.8168-1.06581e-14C57.673-1.06581e-14 62.4205 4.74742 62.4205 10.6036L62.4205 51.8168C62.4205 57.673 57.673 62.4205 51.8168 62.4205L10.6036 62.4205C4.74742 62.4205-1.06581e-14 57.673-1.06581e-14 51.8168L-1.06581e-14 10.6036C-1.06581e-14 4.74742 4.74742-1.06581e-14 10.6036-1.06581e-14Z" fill="#ffffff" fill-rule="nonzero" opacity="1" stroke="none"/>
 <path d="M113.604-1.06581e-14L154.817-1.06581e-14C160.673-1.06581e-14 165.42 4.74742 165.42 10.6036L165.42 51.8168C165.42 57.673 160.673 62.4205 154.817 62.4205L113.604 62.4205C107.747 62.4205 103 57.673 103 51.8168L103 10.6036C103 4.74742 107.747-1.06581e-14 113.604-1.06581e-14Z" fill="#ffffff" fill-rule="nonzero" opacity="1" stroke="none"/>
 <path d="M215.604-1.06581e-14L256.817-1.06581e-14C262.673-1.06581e-14 267.42 4.74742 267.42 10.6036L267.42 51.8168C267.42 57.673 262.673 62.4205 256.817 62.4205L215.604 62.4205C209.747 62.4205 205 57.673 205 51.8168L205 10.6036C205 4.74742 209.747-1.06581e-14 215.604-1.06581e-14Z" fill="#ffffff" fill-rule="nonzero" opacity="1" stroke="none"/>

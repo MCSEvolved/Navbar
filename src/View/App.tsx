@@ -1,9 +1,8 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./PageComponents/Layout";
-import NoPage from "./PageComponents/NoPage";
-import Home from "./PageComponents/Home";
-
 import { initializeApp } from "firebase/app";
+import Portal from "./Components/Portal";
+import UserInfo from "./Components/UserInfo";
+import * as React from "react";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBlfZjJyhjcgyPfxaqkZHSR5SciFBWC5IY",
@@ -17,16 +16,18 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-export default function App() {
+export default function Navbar({logoSrc}: {logoSrc: string|URL}){
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<div className="text-MCS-DarkerBlue">"mcsevolved website"</div>} />
-        <Route path="/insert-path" element={<Layout />} >
-          <Route path="/insert-path/" element={<Home/>} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
+    <div className='bg-MCS-DarkerBlue h-14 flex items-center justify-between'>
+      <div className='flex items-center w-80 h-full'>
+        <Portal></Portal>
+        <a href='/' className='h-max ml-1'>
+          <img src={logoSrc.toString()} alt='Logo' className='h-7'/>
+        </a>
+      </div>
+      <div className='flex items-center w-80 justify-end h-full'>
+        <UserInfo></UserInfo>
+      </div>
     </div>
   )
 }

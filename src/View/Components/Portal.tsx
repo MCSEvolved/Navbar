@@ -1,11 +1,11 @@
 import { Popover, Transition } from "@headlessui/react";
-import {ReactComponent as PortalGridIcon} from '../Images/PortalGridIcon.svg'
-import {ReactComponent as Asset_9} from '../Images/Asset 9.svg'
-import {ReactComponent as Asset_10} from '../Images/Asset 10.svg'
-import {ReactComponent as Asset_11} from '../Images/Asset 11.svg'
-import {ReactComponent as Asset_12} from '../Images/Asset 12.svg'
-import {ReactComponent as Asset_13} from '../Images/Asset 13.svg'
-
+import PortalGridIcon from '../Images/PortalGridIcon.svg'
+import Asset_9 from '../Images/Asset 9.svg'
+import Asset_10 from '../Images/Asset 10.svg'
+import Asset_11 from '../Images/Asset 11.svg'
+import Asset_12 from '../Images/Asset 12.svg'
+import Asset_13 from '../Images/Asset 13.svg'
+import * as React from 'react'
 
 export default function Portal() {
 
