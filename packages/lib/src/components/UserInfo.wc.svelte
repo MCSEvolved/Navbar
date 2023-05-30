@@ -92,18 +92,21 @@
     {#if username != ""}
         <p>{username}</p>
     {:else}
-        <a>
-            <button on:click={login}>
-                Log in
-            </button>
-        </a>
+        <button on:click={login}>
+            Log in
+        </button>
     {/if}
 
     <div class="profile-picture">
-        {#if profilesrc != undefined}
-        <img src={profilesrc} style="border-radius: 50%; width: 3rem" alt="profile-picture"/>
+        {#if username != undefined}
+          {#if profilesrc != undefined}
+          <!-- svelte-ignore a11y-img-redundant-alt -->
+          <img src={profilesrc} style="border-radius: 50%; width: 3rem" alt="profile-picture"/>
+          {:else}
+          <AccountIcon fill='#2bc0d3'/>
+          {/if}
         {:else}
-        <a href={username === undefined"/login"}>
+        <a href="/login">
             <AccountIcon fill='#2bc0d3'/>
         </a>
         {/if}
