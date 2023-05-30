@@ -29,7 +29,6 @@
     "dist/lib"
   ],
   "dependencies": {
-    "firebase": "^9.22.1",
-    "minecraft-auth": "^2.0.1"
+    "firebase": "^9.22.1"
   }
 }
