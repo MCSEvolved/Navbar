@@ -228,10 +228,6 @@
     transform: scale(1.05);
   }
 
-  .dropdown-button > svg {
-    margin-left: 16px;
-  }
-
   .dropdown-button-text {
     margin-left: 12px;
   }
