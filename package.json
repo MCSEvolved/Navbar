@@ -1,10 +1,10 @@
 {
-  "name": "my-library",
-  "description": "A base template for building a shareable web components library with Vite + Svelte",
-  "version": "0.0.0",
+  "name": "mcs-navbar",
+  "description": "The mcs navbar",
+  "version": "0.0.1",
   "type": "module",
-  "module": "dist/lib/my-library.js",
-  "main": "dist/lib/my-library.umd.js",
+  "module": "dist/lib/mcs-navbar.js",
+  "main": "dist/lib/mcs-navbar.umd.js",
   "scripts": {
     "start": "npm run dev -s",
     "dev": "vite --config vite.demo.config.ts",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@tsconfig/svelte": "^3.0.0",
+    "rollup-plugin-svelte-svg": "^1.0.0-beta.6",
     "svelte": "^3.52.0",
     "svelte-check": "^3.0.3",
     "svelte-preprocess": "^5.0.1",
@@ -26,5 +27,9 @@
   },
   "files": [
     "dist/lib"
-  ]
+  ],
+  "dependencies": {
+    "firebase": "^9.22.1",
+    "minecraft-auth": "^2.0.1"
+  }
 }

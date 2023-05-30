@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { transform } from 'esbuild';
 import pkg from './package.json';
+import {svelteSVG} from "rollup-plugin-svelte-svg";
 
 const bundleComponents = process.env.BUNDLE_COMPONENTS ?? true;
 
@@ -33,11 +34,15 @@ export default defineConfig({
     svelte({
       exclude: /\.wc\.svelte$/ as any,
       compilerOptions: {
-        customElement: false
-      }
+        customElement: false,
+      },
     }),
     svelte({
       include: /\.wc\.svelte$/ as any,
+    }),
+    svelteSVG({
+      svgo:{},
+      enforce: "pre",
     }),
     minifyEs()
   ]

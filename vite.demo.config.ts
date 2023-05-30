@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { svelteSVG } from "rollup-plugin-svelte-svg";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,7 +22,19 @@ export default defineConfig({
       hot: false,
       compilerOptions: {
         customElement: true
-      }
+      },
+      onwarn: (warning, handler) => {
+        const { code, frame } = warning;
+        // if (code === "css-unused-selector")
+        //   return;
+
+        handler(warning);
+      },
+
+    }),
+    svelteSVG({
+      svgo:{},
+      enforce: "pre",
     })
   ]
 });

@@ -3,5 +3,5 @@
 </script>
 
 <main>
-    <mcs-navbar count="30"></mcs-navbar>
+    <mcs-navbar logosrc="/emerald-exchange-wide.svg" />
 </main>
