@@ -625,7 +625,7 @@ function ai(n, e, t) {
 }
 class ci extends It {
   constructor(e) {
-    super(), this.shadowRoot.innerHTML = "<style>.portal-button{margin-left:1rem;margin-right:0.5rem;transition:300ms;width:1.75rem;height:1.75rem}.rotate-180{transform:rotate(180deg)}.popover{background-color:rgb(13 29 48 / var(--tw-bg-opacity));position:absolute;height:100vh;width:13rem;margin-top:0.75rem;transition:700ms;left:-15rem}.slidein{transform:translateX(15rem)}.page-icon{height:2rem;width:auto;margin-top:1rem;margin-left:0.5rem;margin-right:0.5rem;display:flex;justify-content:center}</style>", re(
+    super(), this.shadowRoot.innerHTML = "<style>.portal-button{margin-left:1rem;margin-right:0.5rem;transition:300ms;width:1.75rem;height:1.75rem}.rotate-180{transform:rotate(180deg)}.popover{background-color:rgb(13 29 48 / var(--tw-bg-opacity));position:absolute;height:100vh;width:13rem;transition-duration:200ms;transition-property:transform;top:0;left:-15rem;transform-origin:top left;transform:scale(0.9);overflow:hidden;z-index:-1}.slidein{left:0;transform:scale(1)}.page-icon{height:2rem;width:auto;margin-top:1rem;margin-left:0.5rem;margin-right:0.5rem;display:flex;justify-content:center}.page-icon:first-child{margin-top:5rem}</style>", re(
       this,
       {
         target: this.shadowRoot,
