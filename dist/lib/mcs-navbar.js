@@ -559,36 +559,36 @@ class si extends me {
 }
 function oi(n) {
   let e, t, r, i, s, o, l, u, d, m, f, g, b, w, p, v, _, y, k, M, E, U;
-  return r = new Gr({
+  return i = new zr({ props: { style: "height: 2rem" } }), l = new Jr({ props: { style: "height: 2rem" } }), m = new Qr({ props: { style: "height: 2rem" } }), b = new ni({ props: { style: "height: 2rem" } }), v = new si({ props: { style: "height: 2rem" } }), k = new Gr({
     props: {
       style: "width: max-content; height: max-content"
     }
-  }), l = new zr({ props: { style: "height: 2rem" } }), m = new Jr({ props: { style: "height: 2rem" } }), b = new Qr({ props: { style: "height: 2rem" } }), v = new ni({ props: { style: "height: 2rem" } }), k = new si({ props: { style: "height: 2rem" } }), {
+  }), {
     c() {
-      e = N("div"), t = N("div"), ae(r.$$.fragment), i = te(), s = N("section"), o = N("a"), ae(l.$$.fragment), u = te(), d = N("a"), ae(m.$$.fragment), f = te(), g = N("a"), ae(b.$$.fragment), w = te(), p = N("a"), ae(v.$$.fragment), _ = te(), y = N("a"), ae(k.$$.fragment), this.c = A, a(t, "class", "portal-button"), it(
+      e = N("div"), t = N("section"), r = N("a"), ae(i.$$.fragment), s = te(), o = N("a"), ae(l.$$.fragment), u = te(), d = N("a"), ae(m.$$.fragment), f = te(), g = N("a"), ae(b.$$.fragment), w = te(), p = N("a"), ae(v.$$.fragment), _ = te(), y = N("div"), ae(k.$$.fragment), this.c = A, a(r, "href", "/jukebox"), a(r, "class", "page-icon"), a(o, "href", "/turtle"), a(o, "class", "page-icon"), a(d, "href", "/analyser"), a(d, "class", "page-icon"), a(g, "href", "/storage"), a(g, "class", "page-icon"), a(p, "href", "/home"), a(p, "class", "page-icon"), a(t, "class", "popover"), it(
         t,
-        "rotate-180",
+        "slidein",
         /*isToggled*/
         n[0]
-      ), a(o, "href", "/jukebox"), a(o, "class", "page-icon"), a(d, "href", "/turtle"), a(d, "class", "page-icon"), a(g, "href", "/analyser"), a(g, "class", "page-icon"), a(p, "href", "/storage"), a(p, "class", "page-icon"), a(y, "href", "/home"), a(y, "class", "page-icon"), a(s, "class", "popover"), it(
-        s,
-        "slidein",
+      ), a(y, "class", "portal-button"), it(
+        y,
+        "rotate-180",
         /*isToggled*/
         n[0]
       );
     },
     m(I, R) {
-      H(I, e, R), c(e, t), oe(r, t, null), c(e, i), c(e, s), c(s, o), oe(l, o, null), c(s, u), c(s, d), oe(m, d, null), c(s, f), c(s, g), oe(b, g, null), c(s, w), c(s, p), oe(v, p, null), c(s, _), c(s, y), oe(k, y, null), M = !0, E || (U = [
+      H(I, e, R), c(e, t), c(t, r), oe(i, r, null), c(t, s), c(t, o), oe(l, o, null), c(t, u), c(t, d), oe(m, d, null), c(t, f), c(t, g), oe(b, g, null), c(t, w), c(t, p), oe(v, p, null), c(e, _), c(e, y), oe(k, y, null), M = !0, E || (U = [
         $e(
           t,
-          "mousedown",
-          /*mousedown_handler*/
+          "mouseleave",
+          /*mouseleave_handler*/
           n[1]
         ),
         $e(
-          s,
-          "mouseleave",
-          /*mouseleave_handler*/
+          y,
+          "mousedown",
+          /*mousedown_handler*/
           n[2]
         )
       ], E = !0);
@@ -597,35 +597,35 @@ function oi(n) {
       (!M || R & /*isToggled*/
       1) && it(
         t,
-        "rotate-180",
+        "slidein",
         /*isToggled*/
         I[0]
       ), (!M || R & /*isToggled*/
       1) && it(
-        s,
-        "slidein",
+        y,
+        "rotate-180",
         /*isToggled*/
         I[0]
       );
     },
     i(I) {
-      M || (G(r.$$.fragment, I), G(l.$$.fragment, I), G(m.$$.fragment, I), G(b.$$.fragment, I), G(v.$$.fragment, I), G(k.$$.fragment, I), M = !0);
+      M || (G(i.$$.fragment, I), G(l.$$.fragment, I), G(m.$$.fragment, I), G(b.$$.fragment, I), G(v.$$.fragment, I), G(k.$$.fragment, I), M = !0);
     },
     o(I) {
-      q(r.$$.fragment, I), q(l.$$.fragment, I), q(m.$$.fragment, I), q(b.$$.fragment, I), q(v.$$.fragment, I), q(k.$$.fragment, I), M = !1;
+      q(i.$$.fragment, I), q(l.$$.fragment, I), q(m.$$.fragment, I), q(b.$$.fragment, I), q(v.$$.fragment, I), q(k.$$.fragment, I), M = !1;
     },
     d(I) {
-      I && j(e), ee(r), ee(l), ee(m), ee(b), ee(v), ee(k), E = !1, Te(U);
+      I && j(e), ee(i), ee(l), ee(m), ee(b), ee(v), ee(k), E = !1, Te(U);
     }
   };
 }
 function ai(n, e, t) {
   let r = !1;
-  return [r, () => t(0, r = !r), () => t(0, r = !1)];
+  return [r, () => t(0, r = !1), () => t(0, r = !r)];
 }
 class ci extends It {
   constructor(e) {
-    super(), this.shadowRoot.innerHTML = "<style>.portal-button{margin-left:1rem;margin-right:0.5rem;transition:300ms;width:1.75rem;height:1.75rem}.rotate-180{transform:rotate(180deg)}.popover{background-color:rgb(13 29 48 / var(--tw-bg-opacity));position:absolute;height:100vh;width:13rem;transition-duration:200ms;transition-property:transform;top:0;left:-15rem;transform-origin:top left;transform:scale(0.9);overflow:hidden;z-index:-1}.slidein{left:0;transform:scale(1)}.page-icon{height:2rem;width:auto;margin-top:1rem;margin-left:0.5rem;margin-right:0.5rem;display:flex;justify-content:center}.page-icon:first-child{margin-top:5rem}</style>", re(
+    super(), this.shadowRoot.innerHTML = "<style>.portal-button{margin-left:1rem;margin-right:0.5rem;transition:300ms;width:1.75rem;height:1.75rem}.rotate-180{transform:rotate(180deg)}.popover{background-color:rgb(13 29 48 / var(--tw-bg-opacity));position:absolute;height:calc(100vh - 3.5rem);width:13rem;transition-duration:200ms;transition-property:transform;top:3.5rem;left:-15rem;transform-origin:top left;transform:scale(0.9);overflow:hidden}.slidein{left:0;transform:scale(1)}.page-icon{height:2rem;width:auto;margin-top:1rem;margin-left:0.5rem;margin-right:0.5rem;display:flex;justify-content:center}</style>", re(
       this,
       {
         target: this.shadowRoot,
@@ -7165,7 +7165,7 @@ function uc(n, e, t) {
 }
 class hc extends It {
   constructor(e) {
-    super(), this.shadowRoot.innerHTML = "<style>.bg-MCS-DarkerBlue{--tw-bg-opacity:1;background-color:rgb(13 29 48 / var(--tw-bg-opacity))}.h-14{height:3.5rem}.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}.w-80{width:20rem}.h-full{height:100%}.h-max{height:-moz-max-content;height:max-content}.ml-1{margin-left:0.25rem}.logo{height:2rem;margin-top:0.25rem}.justify-end{justify-content:flex-end}</style>", re(
+    super(), this.shadowRoot.innerHTML = "<style>.bg-MCS-DarkerBlue{--tw-bg-opacity:1;background-color:rgb(13 29 48 / var(--tw-bg-opacity))}.h-14{height:3.5rem}.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}.w-80{width:20rem}.h-full{height:100%}.h-max{height:-moz-max-content;height:max-content}.ml-1{margin-left:0.25rem}.logo{height:2rem;margin-top:0.25rem;z-index:1}.justify-end{justify-content:flex-end}</style>", re(
       this,
       {
         target: this.shadowRoot,
