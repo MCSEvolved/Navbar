@@ -51,15 +51,18 @@
     .popover {
         background-color: rgb(13 29 48 / var(--tw-bg-opacity));
         position: absolute;
-        height: 100vh;
+        height: 17rem;
         width: 13rem;
         margin-top: 0.75rem;
-        transition: 700ms;
-        left: -15rem;
+        transition: 300ms;
+        left: 1rem;
+        top: 2rem;
+        border-radius: 1rem;
+        opacity: 0;
     }
 
     .slidein {
-        transform: translateX(15rem);
+        opacity: 1;
     }
 
     .page-icon {
