@@ -51,18 +51,21 @@
     .popover {
         background-color: rgb(13 29 48 / var(--tw-bg-opacity));
         position: absolute;
-        height: 17rem;
+        height: 100vh;
         width: 13rem;
-        margin-top: 0.75rem;
-        transition: 300ms;
-        left: 1rem;
-        top: 2rem;
-        border-radius: 1rem;
-        opacity: 0;
+        transition-duration: 200ms;
+        transition-property: transform;
+        top: 0;
+        left: -15rem;
+        transform-origin: top left;
+        transform: scale(0.9);
+        overflow: hidden;
+        z-index: -1;
     }
 
     .slidein {
-        opacity: 1;
+        left: 0;
+        transform: scale(1);
     }
 
     .page-icon {
@@ -73,5 +76,9 @@
         margin-right: 0.5rem;
         display: flex;
         justify-content: center;
+    }
+
+    .page-icon:first-child {
+        margin-top: 5rem;
     }
 </style>
