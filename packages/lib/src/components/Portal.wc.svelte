@@ -12,10 +12,6 @@
 <svelte:options tag="mcs-portal" />
 
 <div>
-        <div class:rotate-180={isToggled} class='portal-button' on:mousedown={() => isToggled = !isToggled}>
-            <PortalGridIcon style="width: max-content; height: max-content"/>
-        </div>
-
         <section class="popover" class:slidein={isToggled} on:mouseleave={() => isToggled = false}>
             <a href="/jukebox" class='page-icon'>
                 <Asset_9 style="height: 2rem"></Asset_9>
@@ -33,6 +29,10 @@
                 <Asset_13 style="height: 2rem"></Asset_13>
             </a>
         </section>
+
+        <div class:rotate-180={isToggled} class='portal-button' on:mousedown={() => isToggled = !isToggled}>
+            <PortalGridIcon style="width: max-content; height: max-content"/>
+        </div>
 </div>
 
 <style>
@@ -51,16 +51,15 @@
     .popover {
         background-color: rgb(13 29 48 / var(--tw-bg-opacity));
         position: absolute;
-        height: 100vh;
+        height: calc(100vh - 3.5rem);
         width: 13rem;
         transition-duration: 200ms;
         transition-property: transform;
-        top: 0;
+        top: 3.5rem;
         left: -15rem;
         transform-origin: top left;
         transform: scale(0.9);
         overflow: hidden;
-        z-index: -1;
     }
 
     .slidein {
@@ -76,9 +75,5 @@
         margin-right: 0.5rem;
         display: flex;
         justify-content: center;
-    }
-
-    .page-icon:first-child {
-        margin-top: 5rem;
     }
 </style>

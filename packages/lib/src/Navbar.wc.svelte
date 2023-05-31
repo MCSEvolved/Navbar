@@ -62,6 +62,7 @@
   .logo {
     height: 2rem;
     margin-top: 0.25rem;
+    z-index: 1;
   }
 
   .justify-end {
