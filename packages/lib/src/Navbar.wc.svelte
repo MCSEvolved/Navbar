@@ -21,6 +21,13 @@
 </header>
 
 <style>
+  /* header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+  } */
 
   .bg-MCS-DarkerBlue {
     --tw-bg-opacity: 1;
@@ -62,7 +69,7 @@
   .logo {
     height: 2rem;
     margin-top: 0.25rem;
-    z-index: 1;
+    z-index: 1001;
   }
 
   .justify-end {
