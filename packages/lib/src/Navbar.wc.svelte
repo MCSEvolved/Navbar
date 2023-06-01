@@ -21,14 +21,6 @@
 </header>
 
 <style>
-  /* header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100vw;
-  } */
-
   .bg-MCS-DarkerBlue {
     --tw-bg-opacity: 1;
     background-color: rgb(13 29 48 / var(--tw-bg-opacity));
