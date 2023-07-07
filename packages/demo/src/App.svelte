@@ -4,4 +4,5 @@
 
 <main>
     <mcs-navbar logosrc="/emerald-exchange-wide.svg" />
+    contents
 </main>
