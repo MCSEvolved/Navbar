@@ -6,12 +6,7 @@
   import { initializeApp } from "firebase/app";
   import {
     getAuth,
-    OAuthProvider,
-    signInWithPopup,
-    browserLocalPersistence,
-    getAdditionalUserInfo,
     signOut,
-    getRedirectResult,
   } from "firebase/auth";
 
   import AccountIcon from "../images/AccountIcon.svg";
@@ -76,43 +71,6 @@
     });
   });
 
-  async function login() {
-    const auth = getAuth();
-    const handleNewUser = async (idToken: string) => {
-      await fetch("http://localhost:8000/api/auth/check-user-roles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ idtoken: idToken }),
-      });
-
-      await auth.currentUser?.getIdToken(true);
-    };
-
-    const provider = new OAuthProvider("microsoft.com");
-    provider.setCustomParameters({
-      prompt: "select_account",
-    });
-
-    await auth.setPersistence(browserLocalPersistence);
-
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const accessToken =
-        OAuthProvider.credentialFromResult(result)?.accessToken;
-      if (accessToken) localStorage.setItem("accessToken", accessToken);
-
-      if (getAdditionalUserInfo(result)?.isNewUser) {
-        const idToken = await result.user.getIdToken();
-        await handleNewUser(idToken);
-      }
-    } catch (error) {
-      alert(
-        "Something went wrong. Please try again. (Error: " + error.code + ")"
-      );
-    }
-  }
 </script>
 
 <div class="user-info">
@@ -120,7 +78,7 @@
     <p>{username}</p>
   {:else}
   <a href="/login">
-    <button on:click={login}> Log in </button>
+    <button> Log in </button>
   </a>
   {/if}
 
