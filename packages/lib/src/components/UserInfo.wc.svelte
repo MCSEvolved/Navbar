@@ -8,10 +8,13 @@
     getAuth,
     signOut,
   } from "firebase/auth";
+  import {getStorage, ref, getDownloadURL, StorageReference, uploadBytes} from "firebase/storage"
 
   import AccountIcon from "../images/AccountIcon.svg";
   import SettingsIcon from "../images/SettingsIcon.svg";
   import LogoutIcon from "../images/LogoutIcon.svg";
+  import firebase from "firebase/compat";
+  import FirebaseError = firebase.FirebaseError;
 
   let profilesrc = undefined;
   let username = "";
@@ -39,30 +42,38 @@
     };
 
     const app = initializeApp(firebaseConfig);
-
     const auth = getAuth(app);
 
-    // signOut(auth)
+    const saveProfilePicture = async (pfRef: StorageReference) => {
+      const accessToken = localStorage.getItem("accessToken");
+      if(!accessToken) console.log("no token")
+      try {
+        const photo = await fetch(
+                "https://graph.microsoft.com/v1.0/me/photo/$value",
+                { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        const blob = await photo.blob()
+        await uploadBytes(pfRef, blob)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         isLoggedin = true;
         username = user.displayName;
 
-        const accessToken = localStorage.getItem("accessToken");
+        const storage = getStorage(app)
+        const pfRef = ref(storage, `user/${user.uid}/profile.png`)
 
         try {
-          const photo = await fetch(
-            "https://graph.microsoft.com/v1.0/me/photo/$value",
-            { headers: { Authorization: `Bearer ${accessToken}` } }
-          );
-          const blob = await photo.blob();
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onload = (url) => (profilesrc = url.target.result);
-        } catch (error) {
-          console.log(error)
+          profilesrc = await getDownloadURL(pfRef)
+        } catch (e: FirebaseError) {
+          if(e.code === "storage/object-not-found") await saveProfilePicture(pfRef)
+          profilesrc = await getDownloadURL(pfRef)
         }
+
       } else {
         isLoggedin = false;
         profilesrc = undefined;
@@ -110,7 +121,7 @@
         <SettingsIcon height=40 width=40 viewBox="-2.5 0 25 24"/> <span class="dropdown-button-text">Settings</span>
       </a>
       <div class="dropdown-button" on:click={() => signOut(getAuth())}>
-        <LogoutIcon height=40 width=40/> <span class="dropdown-button-text">Log out</span>
+        <LogoutIcon height=40 width=40 /> <span class="dropdown-button-text">Log out</span>
       </div>
     </div>
   {/if}
