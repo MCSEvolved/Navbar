@@ -8,13 +8,11 @@
     getAuth,
     signOut,
   } from "firebase/auth";
-  import {getStorage, ref, getDownloadURL, StorageReference, uploadBytes} from "firebase/storage"
-
+  import {getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage"
+  import type { StorageReference } from "firebase/storage"
   import AccountIcon from "../images/AccountIcon.svg";
   import SettingsIcon from "../images/SettingsIcon.svg";
   import LogoutIcon from "../images/LogoutIcon.svg";
-  import firebase from "firebase/compat";
-  import FirebaseError = firebase.FirebaseError;
 
   let profilesrc = undefined;
   let username = "";
@@ -46,16 +44,16 @@
 
     const saveProfilePicture = async (pfRef: StorageReference) => {
       const accessToken = localStorage.getItem("accessToken");
-      if(!accessToken) console.log("no token")
       try {
         const photo = await fetch(
                 "https://graph.microsoft.com/v1.0/me/photo/$value",
                 { headers: { Authorization: `Bearer ${accessToken}` } }
         );
+        if(photo.status !== 200) throw photo.statusText
         const blob = await photo.blob()
         await uploadBytes(pfRef, blob)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
 
@@ -69,8 +67,8 @@
 
         try {
           profilesrc = await getDownloadURL(pfRef)
-        } catch (e: FirebaseError) {
-          if(e.code === "storage/object-not-found") await saveProfilePicture(pfRef)
+        } catch (error: any) {
+          if(error.code === "storage/object-not-found") await saveProfilePicture(pfRef)
           profilesrc = await getDownloadURL(pfRef)
         }
 
@@ -96,6 +94,7 @@
   <div
     class="profile-picture"
     on:click|stopPropagation={handleMenuOpen}
+    on:keydown|stopPropagation={handleMenuOpen}
   >
     {#if isLoggedin}
       {#if profilesrc != undefined}
@@ -116,11 +115,11 @@
   </div>
 
   {#if isLoggedin}
-    <div style={`opacity: ${openedDropdown ? 1 : 0};`} class="dropdown" on:click|stopPropagation={() => {}}>
+    <div style={`opacity: ${openedDropdown ? 1 : 0};`} class="dropdown" on:click|stopPropagation={() => {}} on:keydown|stopPropagation={() => {}}>
       <a class="dropdown-button" href="/settings">
         <SettingsIcon height=40 width=40 viewBox="-2.5 0 25 24"/> <span class="dropdown-button-text">Settings</span>
       </a>
-      <div class="dropdown-button" on:click={() => signOut(getAuth())}>
+      <div class="dropdown-button" on:click={() => signOut(getAuth())} on:keydown={() => signOut(getAuth())}>
         <LogoutIcon height=40 width=40 /> <span class="dropdown-button-text">Log out</span>
       </div>
     </div>
@@ -195,10 +194,6 @@
 
   .dropdown-button:hover {
     transform: scale(1.05);
-  }
-
-  .dropdown-button > svg {
-    margin-left: 16px;
   }
 
   .dropdown-button-text {

@@ -5,10 +5,12 @@
   import {
     signInWithPopup,
     getAuth,
+    OAuthProvider,
+    browserLocalPersistence,
+    getAdditionalUserInfo,
+    signOut,
   } from "firebase/auth";
   import {onMount} from "svelte";
-  import firebase from "firebase/compat";
-  import OAuthProvider = firebase.auth.OAuthProvider;
 
   let app;
 
@@ -24,13 +26,45 @@
     };
 
     app = initializeApp(firebaseConfig);
+
   })
-  const login = () => {
-    const provider = new OAuthProvider('microsoft.com');
+
+   const login = async () => {
+    const auth = getAuth();
+    const handleNewUser = async (idToken: string) => {
+      await fetch("http://localhost:8000/api/auth/check-user-roles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idtoken: idToken }),
+      });
+
+      await auth.currentUser?.getIdToken(true);
+    };
+
+    const provider = new OAuthProvider("microsoft.com");
     provider.setCustomParameters({
-      prompt: 'select_account',
+      prompt: "select_account",
     });
-    signInWithPopup(getAuth(app), provider)
+
+    await auth.setPersistence(browserLocalPersistence);
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const accessToken =
+        OAuthProvider.credentialFromResult(result)?.accessToken;
+      if (accessToken) localStorage.setItem("accessToken", accessToken);
+
+      if (getAdditionalUserInfo(result)?.isNewUser) {
+        const idToken = await result.user.getIdToken();
+        await handleNewUser(idToken);
+      }
+    } catch (error) {
+      alert(
+        "Something went wrong. Please try again. (Error: " + error.code + ")"
+      );
+    }
   }
 </script>
 
