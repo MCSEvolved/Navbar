@@ -6,14 +6,10 @@
   import { initializeApp } from "firebase/app";
   import {
     getAuth,
-    OAuthProvider,
-    signInWithPopup,
-    browserLocalPersistence,
-    getAdditionalUserInfo,
     signOut,
-    getRedirectResult,
   } from "firebase/auth";
-
+  import {getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage"
+  import type { StorageReference } from "firebase/storage"
   import AccountIcon from "../images/AccountIcon.svg";
   import SettingsIcon from "../images/SettingsIcon.svg";
   import LogoutIcon from "../images/LogoutIcon.svg";
@@ -44,30 +40,38 @@
     };
 
     const app = initializeApp(firebaseConfig);
-
     const auth = getAuth(app);
 
-    // signOut(auth)
+    const saveProfilePicture = async (pfRef: StorageReference) => {
+      const accessToken = localStorage.getItem("accessToken");
+      try {
+        const photo = await fetch(
+                "https://graph.microsoft.com/v1.0/me/photo/$value",
+                { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        if(photo.status !== 200) throw photo.statusText
+        const blob = await photo.blob()
+        await uploadBytes(pfRef, blob)
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         isLoggedin = true;
         username = user.displayName;
 
-        const accessToken = localStorage.getItem("accessToken");
+        const storage = getStorage(app)
+        const pfRef = ref(storage, `user/${user.uid}/profile.png`)
 
         try {
-          const photo = await fetch(
-            "https://graph.microsoft.com/v1.0/me/photo/$value",
-            { headers: { Authorization: `Bearer ${accessToken}` } }
-          );
-          const blob = await photo.blob();
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onload = (url) => (profilesrc = url.target.result);
-        } catch (error) {
-          console.log(error)
+          profilesrc = await getDownloadURL(pfRef)
+        } catch (error: any) {
+          if(error.code === "storage/object-not-found") await saveProfilePicture(pfRef)
+          profilesrc = await getDownloadURL(pfRef)
         }
+
       } else {
         isLoggedin = false;
         profilesrc = undefined;
@@ -76,43 +80,6 @@
     });
   });
 
-  async function login() {
-    const auth = getAuth();
-    const handleNewUser = async (idToken: string) => {
-      await fetch("http://localhost:8000/api/auth/check-user-roles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ idtoken: idToken }),
-      });
-
-      await auth.currentUser?.getIdToken(true);
-    };
-
-    const provider = new OAuthProvider("microsoft.com");
-    provider.setCustomParameters({
-      prompt: "select_account",
-    });
-
-    await auth.setPersistence(browserLocalPersistence);
-
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const accessToken =
-        OAuthProvider.credentialFromResult(result)?.accessToken;
-      if (accessToken) localStorage.setItem("accessToken", accessToken);
-
-      if (getAdditionalUserInfo(result)?.isNewUser) {
-        const idToken = await result.user.getIdToken();
-        await handleNewUser(idToken);
-      }
-    } catch (error) {
-      alert(
-        "Something went wrong. Please try again. (Error: " + error.code + ")"
-      );
-    }
-  }
 </script>
 
 <div class="user-info">
@@ -120,13 +87,14 @@
     <p>{username}</p>
   {:else}
   <a href="/login">
-    <button on:click={login}> Log in </button>
+    <button> Log in </button>
   </a>
   {/if}
 
   <div
     class="profile-picture"
     on:click|stopPropagation={handleMenuOpen}
+    on:keydown|stopPropagation={handleMenuOpen}
   >
     {#if isLoggedin}
       {#if profilesrc != undefined}
@@ -147,12 +115,12 @@
   </div>
 
   {#if isLoggedin}
-    <div style={`opacity: ${openedDropdown ? 1 : 0};`} class="dropdown" on:click|stopPropagation={() => {}}>
+    <div style={`opacity: ${openedDropdown ? 1 : 0};`} class="dropdown" on:click|stopPropagation={() => {}} on:keydown|stopPropagation={() => {}}>
       <a class="dropdown-button" href="/settings">
         <SettingsIcon height=40 width=40 viewBox="-2.5 0 25 24"/> <span class="dropdown-button-text">Settings</span>
       </a>
-      <div class="dropdown-button" on:click={() => signOut(getAuth())}>
-        <LogoutIcon height=40 width=40/> <span class="dropdown-button-text">Log out</span>
+      <div class="dropdown-button" on:click={() => signOut(getAuth())} on:keydown={() => signOut(getAuth())}>
+        <LogoutIcon height=40 width=40 /> <span class="dropdown-button-text">Log out</span>
       </div>
     </div>
   {/if}
