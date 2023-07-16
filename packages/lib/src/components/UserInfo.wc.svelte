@@ -13,6 +13,9 @@
   import AccountIcon from "../images/AccountIcon.svg";
   import SettingsIcon from "../images/SettingsIcon.svg";
   import LogoutIcon from "../images/LogoutIcon.svg";
+  import "./LoginButton.wc.svelte"
+
+  export let debug: boolean;
 
   let profilesrc = undefined;
   let username = "";
@@ -86,9 +89,7 @@
   {#if username != ""}
     <p>{username}</p>
   {:else}
-  <a href="/login">
-    <button> Log in </button>
-  </a>
+    <mcs-loginbutton debug={debug}/>
   {/if}
 
   <div
@@ -115,7 +116,7 @@
   </div>
 
   {#if isLoggedin}
-    <div style={`opacity: ${openedDropdown ? 1 : 0};`} class="dropdown" on:click|stopPropagation={() => {}} on:keydown|stopPropagation={() => {}}>
+    <div style={`display: ${openedDropdown ? undefined : 'none'};`} class="dropdown" on:click|stopPropagation={() => {}} on:keydown|stopPropagation={() => {}}>
       <a class="dropdown-button" href="/settings">
         <SettingsIcon height=40 width=40 viewBox="-2.5 0 25 24"/> <span class="dropdown-button-text">Settings</span>
       </a>
@@ -134,26 +135,6 @@
   .profile-picture {
     margin-left: 1rem;
     margin-right: 0.5rem;
-  }
-
-  button {
-    background-color: transparent;
-    color: white;
-    border-radius: 12px;
-    height: 2rem;
-    width: 6rem;
-    font-size: 1rem;
-
-    border: 2px solid #206191;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #206191;
   }
 
   p {

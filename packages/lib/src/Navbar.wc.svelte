@@ -4,6 +4,7 @@
   import "./components/Portal.wc.svelte";
   import "./components/UserInfo.wc.svelte";
   export let logosrc;
+  export let debug = false;
 </script>
 
 <header>
@@ -15,7 +16,7 @@
       </a>
     </div>
     <div class='flex items-center w-80 justify-end h-full'>
-      <mcs-userinfo />
+      <mcs-userinfo debug={debug}/>
     </div>
   </div>
 </header>
