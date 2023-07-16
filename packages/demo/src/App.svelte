@@ -69,7 +69,7 @@
 </script>
 
 <main>
-    <mcs-navbar logosrc="/emerald-exchange-wide.svg" debug={false}/>
+    <mcs-navbar logosrc="/emerald-exchange-wide.svg" debug="false"/>
 
     <button on:click={login}>
         LOGIN

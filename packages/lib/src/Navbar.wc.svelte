@@ -4,7 +4,7 @@
   import "./components/Portal.wc.svelte";
   import "./components/UserInfo.wc.svelte";
   export let logosrc;
-  export let debug = false;
+  export let debug;
 </script>
 
 <header>

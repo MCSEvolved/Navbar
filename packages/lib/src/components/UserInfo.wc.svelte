@@ -15,7 +15,7 @@
   import LogoutIcon from "../images/LogoutIcon.svg";
   import "./LoginButton.wc.svelte"
 
-  export let debug: boolean;
+  export let debug: string;
 
   let profilesrc = undefined;
   let username = "";

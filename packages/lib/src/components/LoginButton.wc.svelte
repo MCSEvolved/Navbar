@@ -4,7 +4,7 @@
     import {getApp} from 'firebase/app'
     import {OAuthProvider, getAuth, signInWithPopup, browserLocalPersistence, getAdditionalUserInfo, } from "firebase/auth"
     
-    export let debug: boolean;
+    export let debug: string|boolean;
 
     const saveAccessTokenInLocalStorage = (accessToken: string | undefined) => {
         if (!accessToken) {
@@ -29,6 +29,7 @@
 
 
     const signIn = () => {
+
         const provider = new OAuthProvider('microsoft.com');
         provider.setCustomParameters({
         prompt: 'select_account',
@@ -55,7 +56,7 @@
     }
 </script>
 
-{#if debug}
+{#if debug === "true"}
     <button on:click={signIn}> Log in </button>
 {:else}
     <a href="/login">
