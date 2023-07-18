@@ -3,15 +3,17 @@
 <script lang="ts">
   import "./components/Portal.wc.svelte";
   import "./components/UserInfo.wc.svelte";
+  import {onMount} from "svelte";
   export let logosrc;
   export let debug;
+  export let redirect = "/";
 </script>
 
 <header>
   <div class='bg-MCS-DarkerBlue h-14 flex items-center justify-between'>
     <div class='flex items-center w-80 h-full'>
       <mcs-portal />
-      <a href='/' class='h-max ml-1'>
+      <a href={redirect} class='h-max ml-1'>
         <img src={logosrc} alt='Logo' class='logo'/>
       </a>
     </div>
