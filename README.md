@@ -2,8 +2,9 @@
 
 this is the repo for the MCS navbar.
 the navbar can be used in other repos by first installing it like this:
-
-`npm i --save https://github.com/MCSEvolved/Navbar.git`
+```
+npm i --save https://github.com/MCSEvolved/Navbar.git
+```
 
 then the navbar can be imported like this
 
@@ -17,7 +18,15 @@ then the navbar can be imported like this
 </body>
 ```
 
-### Type Errors
+## Updating the navbar
+If the navbar had an update, you can install this update by running: 
+```
+npm upgrade mcs-navbar
+```
+in the terminal.
+
+
+## Type Errors
 It's possible that typescript will show some problems, atleast when using react. 
 
 If it complains about 'mcs-navbar' not being declared or 'mcs-navbar' not being a property on JSX.IntrinsicElements, add a file called `mcs-navbar.d.ts` and add the following:
