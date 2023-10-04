@@ -8242,7 +8242,7 @@ function su(t) {
   let e, n;
   return {
     c() {
-      e = N("a"), n = N("button"), n.textContent = "Log in", a(e, "href", `/login?redirect=${window.location.pathname}`);
+      e = N("a"), n = N("button"), n.textContent = "Log in", a(e, "href", `/login?redirect=${window.location.href}`);
     },
     m(r, i) {
       x(r, e, i), u(e, n);
