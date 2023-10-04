@@ -59,7 +59,7 @@
 {#if debug === "true"}
     <button on:click={signIn}> Log in </button>
 {:else}
-    <a href={`/login?redirect=${window.location.href}`}>
+    <a href={`/login?redirect=${window.location.pathname}`}>
         <button> Log in </button>
     </a>
 {/if}
